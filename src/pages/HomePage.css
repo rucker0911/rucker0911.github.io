@@ -1,5 +1,17 @@
 .home__welcome {
   margin-bottom: 2rem;
+  position: relative;
+}
+
+.home__welcome::after {
+  content: '';
+  display: block;
+  width: 100%;
+  max-width: 12rem;
+  height: 1px;
+  margin-top: 1rem;
+  background: linear-gradient(90deg, var(--hud-cyan, #00e0ff) 0%, transparent 100%);
+  box-shadow: 0 0 8px rgba(0, 224, 255, 0.4);
 }
 
 .home__welcome-title {
@@ -24,11 +36,35 @@
   margin-bottom: 1.25rem;
 }
 
+.home__search-wrap {
+  position: relative;
+  display: inline-block;
+  max-width: 20rem;
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.home__search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--hud-cyan-dim, rgba(0, 224, 255, 0.5));
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home__search-wrap:focus-within .home__search-icon {
+  color: var(--hud-cyan, #00e0ff);
+  text-shadow: 0 0 8px rgba(0, 224, 255, 0.5);
+}
+
 .home__search {
   width: 100%;
-  max-width: 20rem;
-  padding: 0.5rem 0.75rem;
-  margin-bottom: 0.75rem;
+  padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+  margin-bottom: 0;
   background: rgba(8, 12, 18, 0.9);
   border: 1px solid var(--hud-cyan-dim, rgba(0, 224, 255, 0.4));
   border-radius: 4px;
@@ -195,7 +231,9 @@
 
 .home__list-link {
   display: block;
+  position: relative;
   padding: 1rem;
+  padding-bottom: 1.25rem;
   background: rgba(8, 12, 18, 0.85);
   border: 1px solid var(--hud-cyan-dim, rgba(0, 224, 255, 0.3));
   border-radius: 4px;
@@ -208,6 +246,18 @@
 .home__list-link:hover {
   border-color: var(--hud-cyan, #00e0ff);
   box-shadow: var(--hud-glow, 0 0 12px rgba(0, 224, 255, 0.15), 0 0 24px rgba(0, 224, 255, 0.08));
+}
+
+.home__list-bar {
+  display: block;
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--hud-cyan-dim, rgba(0, 224, 255, 0.5)) 50%, transparent 100%);
+  box-shadow: 0 0 6px rgba(0, 224, 255, 0.3);
+  border-radius: 0 0 2px 2px;
 }
 
 .home__list-title {

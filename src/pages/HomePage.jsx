@@ -62,14 +62,22 @@ export default function HomePage() {
 
       <section id="posts" className="home__posts">
         <div className="home__toolbar">
-          <input
-            type="search"
-            className="home__search"
-            placeholder="搜尋文章、標籤…"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            aria-label="搜尋文章"
-          />
+          <div className="home__search-wrap">
+            <span className="home__search-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
+            </span>
+            <input
+              type="search"
+              className="home__search"
+              placeholder="搜尋文章、標籤…"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              aria-label="搜尋文章"
+            />
+          </div>
           <div className="home__toolbar-row">
             <div className="home__tabs">
               <button
@@ -188,6 +196,7 @@ export default function HomePage() {
                 {post.excerpt && (
                   <p className="home__list-excerpt">{post.excerpt}</p>
                 )}
+                <span className="home__list-bar" aria-hidden="true" />
               </Link>
             </li>
           ))}
