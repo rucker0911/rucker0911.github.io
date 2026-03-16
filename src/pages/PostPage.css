@@ -7,34 +7,37 @@
 .post-page__back {
   display: inline-block;
   margin-bottom: 1rem;
-  color: #ACD6FF;
+  color: var(--hud-cyan, #00e0ff);
   text-decoration: none;
   font-size: 0.9rem;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, text-shadow 0.2s;
 }
 
 .post-page__back:hover {
-  opacity: 0.85;
+  opacity: 0.9;
+  text-shadow: 0 0 12px rgba(0, 224, 255, 0.4);
 }
 
 .post-page__not-found {
-  color: #888;
+  color: var(--hud-text-dim, #6a7a88);
   margin-bottom: 1rem;
 }
 
 .post-page__header {
   margin-bottom: 2rem;
   padding-bottom: 1.25rem;
-  border-bottom: 1px solid rgba(172, 214, 255, 0.2);
+  border-bottom: 1px solid var(--hud-cyan-dim, rgba(0, 224, 255, 0.3));
+  box-shadow: 0 1px 0 0 rgba(0, 224, 255, 0.06);
 }
 
 .post-page__title {
-  color: #ACD6FF;
+  color: var(--hud-cyan, #00e0ff);
   font-size: 1.65rem;
   line-height: 1.35;
   margin-bottom: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 24px rgba(0, 224, 255, 0.35);
 }
 
 .post-page__meta {
@@ -53,8 +56,9 @@
 }
 
 .post-page__tag {
-  background: rgba(172, 214, 255, 0.15);
-  color: #ACD6FF;
+  background: var(--hud-cyan-soft, rgba(0, 224, 255, 0.1));
+  color: var(--hud-cyan, #00e0ff);
+  border: 1px solid var(--hud-cyan-dim, rgba(0, 224, 255, 0.3));
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
   font-size: 0.8rem;
@@ -72,7 +76,7 @@
 }
 
 .post-page__body h2 {
-  color: #ACD6FF;
+  color: var(--hud-cyan, #00e0ff);
   font-size: 1.25rem;
   font-weight: 600;
   margin-top: 2rem;
@@ -86,7 +90,7 @@
 }
 
 .post-page__body h3 {
-  color: #b8d4e8;
+  color: var(--hud-cyan, #00e0ff);
   font-size: 1.1rem;
   font-weight: 600;
   margin-top: 1.5rem;
@@ -126,7 +130,7 @@
 
 .post-page__body code {
   background: rgba(172, 214, 255, 0.12);
-  color: #ACD6FF;
+  color: var(--hud-cyan, #00e0ff);
   padding: 0.2rem 0.45rem;
   border-radius: 4px;
   font-size: 0.9em;
@@ -138,13 +142,13 @@
 }
 
 .post-page__body a {
-  color: #ACD6FF;
+  color: var(--hud-cyan, #00e0ff);
   text-decoration: none;
   border-bottom: 1px solid rgba(172, 214, 255, 0.4);
 }
 
 .post-page__body a:hover {
-  border-bottom-color: #ACD6FF;
+  border-bottom-color: var(--hud-cyan, #00e0ff);
 }
 
 .post-page__body hr {

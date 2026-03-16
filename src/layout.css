@@ -15,8 +15,9 @@
 .blog-layout__left {
   display: flex;
   flex-direction: column;
-  background: rgba(15, 15, 20, 0.92);
-  border-right: 1px solid rgba(172, 214, 255, 0.2);
+  background: var(--hud-panel, rgba(15, 15, 20, 0.92));
+  border-right: var(--hud-border, 1px solid rgba(172, 214, 255, 0.2));
+  box-shadow: 2px 0 20px rgba(0, 224, 255, 0.06);
   padding: 1.25rem 0;
   overflow-y: auto;
   pointer-events: none;
@@ -32,7 +33,7 @@
   min-width: 0;
   overflow-y: auto;
   padding: 1.25rem 1.5rem;
-  background: rgba(10, 10, 14, 0.88);
+  background: rgba(6, 10, 14, 0.9);
   pointer-events: none;
 }
 
@@ -43,8 +44,9 @@
 .blog-layout__right {
   display: flex;
   flex-direction: column;
-  background: rgba(15, 15, 20, 0.92);
-  border-left: 1px solid rgba(172, 214, 255, 0.2);
+  background: var(--hud-panel, rgba(15, 15, 20, 0.92));
+  border-left: var(--hud-border, 1px solid rgba(172, 214, 255, 0.2));
+  box-shadow: -2px 0 20px rgba(0, 224, 255, 0.06);
   padding: 1.25rem;
   overflow-y: auto;
   pointer-events: none;
@@ -58,11 +60,12 @@
 .blog-layout__brand {
   padding: 0 1rem 1rem;
   margin-bottom: 0.75rem;
-  border-bottom: 1px solid rgba(172, 214, 255, 0.15);
+  border-bottom: 1px solid var(--hud-cyan-dim, rgba(172, 214, 255, 0.3));
   font-size: 1.1rem;
   font-weight: 600;
-  color: #ACD6FF;
-  letter-spacing: 0.05em;
+  color: var(--hud-cyan, #00e0ff);
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 20px rgba(0, 224, 255, 0.4);
 }
 
 .blog-layout__nav {
@@ -78,21 +81,27 @@
 .blog-layout__nav-link {
   display: block;
   padding: 0.5rem 1rem;
-  color: #b0b0b0;
+  margin: 0 0.5rem;
+  color: var(--hud-text-dim, #8a9ca8);
   text-decoration: none;
   font-size: 0.9rem;
-  transition: color 0.2s, background 0.2s;
+  letter-spacing: 0.05em;
+  border-left: 2px solid transparent;
+  transition: color 0.2s, background 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 
 .blog-layout__nav-link:hover {
-  color: #ACD6FF;
-  background: rgba(172, 214, 255, 0.08);
+  color: var(--hud-cyan, #00e0ff);
+  background: var(--hud-cyan-soft, rgba(0, 224, 255, 0.08));
+  border-left-color: var(--hud-cyan-dim, rgba(0, 224, 255, 0.5));
+  box-shadow: inset 0 0 20px rgba(0, 224, 255, 0.05);
 }
 
 .blog-layout__nav-link--active {
-  color: #ACD6FF;
-  background: rgba(172, 214, 255, 0.12);
-  border-left: 3px solid #ACD6FF;
+  color: var(--hud-cyan, #00e0ff);
+  background: var(--hud-cyan-soft, rgba(0, 224, 255, 0.1));
+  border-left: 2px solid var(--hud-cyan, #00e0ff);
+  box-shadow: inset 0 0 24px rgba(0, 224, 255, 0.08), 0 0 12px rgba(0, 224, 255, 0.1);
 }
 
 /* 主內容區佔位 */
@@ -106,10 +115,11 @@
 .blog-layout__aside-title {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #ACD6FF;
+  color: var(--hud-cyan, #00e0ff);
   margin-bottom: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 12px rgba(0, 224, 255, 0.3);
 }
 
 /* 手機：主內容全寬，側欄收合為抽屜 */
@@ -164,8 +174,9 @@
   left: 0;
   right: 0;
   height: 3rem;
-  background: rgba(15, 15, 20, 0.98);
-  border-bottom: 1px solid rgba(172, 214, 255, 0.2);
+  background: rgba(5, 8, 12, 0.98);
+  border-bottom: 1px solid var(--hud-cyan-dim, rgba(0, 224, 255, 0.4));
+  box-shadow: 0 2px 20px rgba(0, 224, 255, 0.08);
   z-index: 999;
   align-items: center;
   justify-content: space-between;
@@ -181,7 +192,9 @@
 .blog-layout__mobile-bar-brand {
   font-size: 1rem;
   font-weight: 600;
-  color: #ACD6FF;
+  color: var(--hud-cyan, #00e0ff);
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 16px rgba(0, 224, 255, 0.35);
 }
 
 .blog-layout__mobile-bar-actions {
@@ -198,16 +211,18 @@
   height: 2.5rem;
   padding: 0;
   background: transparent;
-  border: 1px solid rgba(172, 214, 255, 0.4);
-  color: #ACD6FF;
-  border-radius: 6px;
+  border: 1px solid var(--hud-cyan-dim, rgba(0, 224, 255, 0.5));
+  color: var(--hud-cyan, #00e0ff);
+  border-radius: 4px;
   cursor: pointer;
   font-size: 1.1rem;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 12px rgba(0, 224, 255, 0.1);
 }
 
 .blog-layout__mobile-btn:hover {
-  background: rgba(172, 214, 255, 0.15);
+  background: var(--hud-cyan-soft, rgba(0, 224, 255, 0.12));
+  box-shadow: 0 0 16px rgba(0, 224, 255, 0.25), inset 0 0 12px rgba(0, 224, 255, 0.05);
 }
 
 .blog-layout__overlay {

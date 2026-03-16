@@ -1,0 +1,20 @@
+/* 科技 HUD / 介面風格：細線發光、青藍主色、深色底 */
+
+:root {
+  --hud-cyan: #00e0ff;
+  --hud-cyan-dim: rgba(0, 224, 255, 0.5);
+  --hud-cyan-soft: rgba(0, 224, 255, 0.15);
+  --hud-bg: #050508;
+  --hud-panel: rgba(8, 12, 18, 0.92);
+  --hud-border: 1px solid var(--hud-cyan-dim);
+  --hud-glow-sm: 0 0 8px var(--hud-cyan-soft);
+  --hud-glow: 0 0 12px var(--hud-cyan-soft), 0 0 24px rgba(0, 224, 255, 0.08);
+  --hud-glow-strong: 0 0 16px rgba(0, 224, 255, 0.35), 0 0 32px rgba(0, 224, 255, 0.15);
+  --hud-text: #c8e8f0;
+  --hud-text-dim: #7a9ca8;
+}
+
+body {
+  background-color: var(--hud-bg);
+  color: var(--hud-text);
+}

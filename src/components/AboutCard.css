@@ -1,35 +1,37 @@
 .about-card {
-  background: rgba(30, 30, 38, 0.9);
-  border: 1px solid rgba(172, 214, 255, 0.25);
-  border-radius: 8px;
+  background: rgba(8, 12, 18, 0.9);
+  border: 1px solid var(--hud-cyan-dim, rgba(0, 224, 255, 0.35));
+  border-radius: 4px;
   padding: 1rem;
   margin-top: 0.5rem;
+  box-shadow: 0 0 20px rgba(0, 224, 255, 0.06), inset 0 0 20px rgba(0, 224, 255, 0.02);
 }
 
 .about-card__title {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #ACD6FF;
+  color: var(--hud-cyan, #00e0ff);
   margin-bottom: 0.5rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 12px rgba(0, 224, 255, 0.3);
 }
 
 .about-card__name {
   font-size: 1rem;
   font-weight: 600;
-  color: #e0e0e0;
+  color: var(--hud-text, #c8e8f0);
   margin-bottom: 0.5rem;
 }
 
 .about-card__bio {
   font-size: 0.85rem;
-  color: #aaa;
+  color: var(--hud-text-dim, #8a9ca8);
   line-height: 1.5;
   margin-bottom: 0.5rem;
 }
 
 .about-card__skills {
   font-size: 0.8rem;
-  color: #888;
+  color: var(--hud-text-dim, #6a7a88);
 }
