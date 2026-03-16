@@ -1,0 +1,183 @@
+/* 參考 reference/static/css/style.css：網格背景 + 中央浮動卡片 */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+.ref-page {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.ref-page {
+  position: relative;
+  min-height: 100vh;
+  background: #000;
+}
+
+.ref-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+  overflow: hidden;
+  padding: 2px 0;
+}
+
+.ref-section::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#000, #ACD6FF, #000);
+  animation: ref-gradient 5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes ref-gradient {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.ref-grid-span {
+  position: relative;
+  display: block;
+  width: calc(6.25vw - 2px);
+  height: calc(6.25vw - 2px);
+  background: #181818;
+  z-index: 2;
+  transition: 1.5s;
+}
+
+.ref-grid-span:hover {
+  background: #ACD6FF;
+  transition: 0s;
+}
+
+.ref-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 480px;
+  background: #222;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  border-radius: 4px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
+}
+
+.ref-card .ref-content {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.ref-card h1 {
+  font-size: 1.75em;
+  color: #ACD6FF;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ref-card .tagline {
+  color: #aaa;
+  font-size: 0.95rem;
+}
+
+.ref-card h2 {
+  font-size: 1.15em;
+  color: #ACD6FF;
+  margin-bottom: 0.25rem;
+  width: 100%;
+}
+
+.ref-card p {
+  color: #ccc;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.ref-card .ref-block {
+  width: 100%;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #333;
+}
+
+.ref-card .ref-block:last-of-type {
+  border-bottom: none;
+}
+
+.ref-card a {
+  color: #ACD6FF;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.ref-card a:hover {
+  text-decoration: underline;
+}
+
+.ref-card .ref-btn {
+  padding: 10px 20px;
+  background: #ACD6FF;
+  color: #000;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.ref-card .ref-btn:hover {
+  opacity: 0.9;
+}
+
+.ref-card .ref-btn:active {
+  opacity: 0.6;
+}
+
+.ref-card .ref-btn-outline {
+  background: transparent;
+  color: #ACD6FF;
+  border: 1px solid #ACD6FF;
+}
+
+.ref-card .ref-footer {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+@media (max-width: 900px) {
+  .ref-grid-span {
+    width: calc(10vw - 2px);
+    height: calc(10vw - 2px);
+  }
+}
+
+@media (max-width: 600px) {
+  .ref-grid-span {
+    width: calc(20vw - 2px);
+    height: calc(20vw - 2px);
+  }
+  .ref-card {
+    padding: 24px;
+  }
+}
