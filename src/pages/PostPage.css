@@ -1,0 +1,155 @@
+.post-page {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+}
+
+.post-page__back {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: #ACD6FF;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
+}
+
+.post-page__back:hover {
+  opacity: 0.85;
+}
+
+.post-page__not-found {
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+.post-page__header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(172, 214, 255, 0.2);
+}
+
+.post-page__title {
+  color: #ACD6FF;
+  font-size: 1.65rem;
+  line-height: 1.35;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.post-page__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.post-page__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.post-page__tag {
+  background: rgba(172, 214, 255, 0.15);
+  color: #ACD6FF;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.post-page__body {
+  color: #d0d0d0;
+  font-size: 1rem;
+  line-height: 1.8;
+  max-width: 65ch;
+}
+
+.post-page__body > *:first-child {
+  margin-top: 0;
+}
+
+.post-page__body h2 {
+  color: #ACD6FF;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.35rem;
+  letter-spacing: 0.02em;
+}
+
+.post-page__body h2:first-child {
+  margin-top: 0;
+}
+
+.post-page__body h3 {
+  color: #b8d4e8;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-page__body p {
+  margin-bottom: 1rem;
+}
+
+.post-page__body p + p {
+  margin-top: 0.25rem;
+}
+
+.post-page__body ul,
+.post-page__body ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.post-page__body ul {
+  list-style-type: disc;
+}
+
+.post-page__body ol {
+  list-style-type: decimal;
+}
+
+.post-page__body li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.post-page__body li::marker {
+  color: rgba(172, 214, 255, 0.6);
+}
+
+.post-page__body code {
+  background: rgba(172, 214, 255, 0.12);
+  color: #ACD6FF;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.post-page__body strong {
+  color: #e8e8e8;
+  font-weight: 600;
+}
+
+.post-page__body a {
+  color: #ACD6FF;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(172, 214, 255, 0.4);
+}
+
+.post-page__body a:hover {
+  border-bottom-color: #ACD6FF;
+}
+
+.post-page__body hr {
+  border: none;
+  height: 1px;
+  background: rgba(172, 214, 255, 0.15);
+  margin: 2rem 0;
+}

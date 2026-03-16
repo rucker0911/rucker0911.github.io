@@ -1,21 +1,29 @@
 /* 三欄版面：左窄 + 中寬 + 右窄，RWD 手機收合側欄 */
 
 .blog-layout {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 220px 1fr 260px;
   grid-template-rows: 1fr;
   min-height: 100vh;
-  background: #0a0a0a;
+  background: transparent;
   color: #e0e0e0;
+  pointer-events: none;
 }
 
 .blog-layout__left {
   display: flex;
   flex-direction: column;
-  background: rgba(20, 20, 25, 0.95);
+  background: rgba(15, 15, 20, 0.92);
   border-right: 1px solid rgba(172, 214, 255, 0.2);
   padding: 1.25rem 0;
   overflow-y: auto;
+  pointer-events: none;
+}
+
+.blog-layout__left * {
+  pointer-events: auto;
 }
 
 .blog-layout__main {
@@ -24,15 +32,26 @@
   min-width: 0;
   overflow-y: auto;
   padding: 1.25rem 1.5rem;
+  background: rgba(10, 10, 14, 0.88);
+  pointer-events: none;
+}
+
+.blog-layout__main * {
+  pointer-events: auto;
 }
 
 .blog-layout__right {
   display: flex;
   flex-direction: column;
-  background: rgba(20, 20, 25, 0.95);
+  background: rgba(15, 15, 20, 0.92);
   border-left: 1px solid rgba(172, 214, 255, 0.2);
   padding: 1.25rem;
   overflow-y: auto;
+  pointer-events: none;
+}
+
+.blog-layout__right * {
+  pointer-events: auto;
 }
 
 /* 左側：站名 + 導航 */

@@ -1,22 +1,37 @@
 import { useState } from 'react'
+import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import './App.css'
 import './reference-style.css'
 import './layout.css'
+import HomePage from './pages/HomePage'
+import PostPage from './pages/PostPage'
+import RecentPosts from './components/RecentPosts'
+import AboutCard from './components/AboutCard'
 
 function App() {
   const [leftOpen, setLeftOpen] = useState(false)
   const [rightOpen, setRightOpen] = useState(false)
+  const location = useLocation()
 
   const closeOverlay = () => {
     setLeftOpen(false)
     setRightOpen(false)
   }
 
+  const isHome = location.pathname === '/'
+
+  const GRID_SPAN_COUNT = 400
+
   return (
-    <div className="blog-layout">
-      {/* 手機頂列：品牌 + 開關側欄按鈕 */}
+    <div className="ref-page">
+      <section className="ref-section ref-section--bg" aria-hidden="true">
+        {Array.from({ length: GRID_SPAN_COUNT }, (_, i) => (
+          <span key={i} className="ref-grid-span" />
+        ))}
+      </section>
+      <div className="blog-layout">
       <header className="blog-layout__mobile-bar">
-        <span className="blog-layout__mobile-bar-brand">Rucker</span>
+        <span className="blog-layout__mobile-bar-brand">曹同和</span>
         <div className="blog-layout__mobile-bar-actions">
           <button
             type="button"
@@ -37,7 +52,6 @@ function App() {
         </div>
       </header>
 
-      {/* 點擊遮罩關閉側欄 */}
       <div
         className={`blog-layout__overlay ${leftOpen || rightOpen ? 'is-visible' : ''}`}
         onClick={closeOverlay}
@@ -47,50 +61,61 @@ function App() {
         aria-label="關閉選單"
       />
 
-      {/* 左側：導航 */}
       <aside className={`blog-layout__left ${leftOpen ? 'is-open' : ''}`}>
-        <div className="blog-layout__brand">Rucker</div>
+        <div className="blog-layout__brand">曹同和</div>
         <nav>
           <ul className="blog-layout__nav">
             <li className="blog-layout__nav-item">
-              <a href="#home" className="blog-layout__nav-link blog-layout__nav-link--active">首頁</a>
+              <Link
+                to="/"
+                className={`blog-layout__nav-link ${isHome ? 'blog-layout__nav-link--active' : ''}`}
+                onClick={closeOverlay}
+              >
+                首頁
+              </Link>
             </li>
             <li className="blog-layout__nav-item">
-              <a href="#posts" className="blog-layout__nav-link">文章</a>
+              <Link
+                to="/"
+                className="blog-layout__nav-link"
+                onClick={closeOverlay}
+              >
+                文章
+              </Link>
             </li>
             <li className="blog-layout__nav-item">
-              <a href="#projects" className="blog-layout__nav-link">專案</a>
+              <a href={isHome ? '#projects' : '/#projects'} className="blog-layout__nav-link" onClick={closeOverlay}>
+                專案
+              </a>
             </li>
             <li className="blog-layout__nav-item">
-              <a href="#about" className="blog-layout__nav-link">關於</a>
+              <a href={isHome ? '#about' : '/#about'} className="blog-layout__nav-link" onClick={closeOverlay}>
+                關於
+              </a>
             </li>
             <li className="blog-layout__nav-item">
-              <a href="#contact" className="blog-layout__nav-link">聯絡</a>
+              <a href={isHome ? '#contact' : '/#contact'} className="blog-layout__nav-link" onClick={closeOverlay}>
+                聯絡
+              </a>
             </li>
           </ul>
         </nav>
       </aside>
 
-      {/* 主內容 */}
       <main className="blog-layout__main">
         <div className="blog-layout__main-inner">
-          <h1 style={{ color: '#ACD6FF', marginBottom: '0.5rem', fontSize: '1.5rem' }}>Hi, 我是 Rucker</h1>
-          <p style={{ color: '#aaa', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
-            用 React + Vite 建置的個人網站，三欄版面（左窄 + 中寬 + 右窄），手機可收合側欄。
-          </p>
-          <p style={{ color: '#888', fontSize: '0.9rem' }}>
-            主內容區：之後可放文章列表、搜尋、分頁等。
-          </p>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/post/:slug" element={<PostPage />} />
+          </Routes>
         </div>
       </main>
 
-      {/* 右側：最近文章 / 關於我 等 */}
       <aside className={`blog-layout__right ${rightOpen ? 'is-open' : ''}`}>
-        <h2 className="blog-layout__aside-title">最近文章</h2>
-        <p style={{ color: '#888', fontSize: '0.85rem' }}>（尚未有貼文）</p>
-        <h2 className="blog-layout__aside-title" style={{ marginTop: '1.25rem' }}>關於</h2>
-        <p style={{ color: '#aaa', fontSize: '0.9rem' }}>軟體工程師，Python / React。</p>
+        <RecentPosts />
+        <AboutCard />
       </aside>
+      </div>
     </div>
   )
 }

@@ -32,6 +32,20 @@
   padding: 2px 0;
 }
 
+/* 作為部落格底層背景：固定、置底、不擋住三欄 */
+.ref-section--bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  height: 100vh;
+  max-height: 100vh;
+  pointer-events: none;
+}
+
+.ref-section--bg .ref-grid-span {
+  pointer-events: auto;
+}
+
 .ref-section::before {
   content: '';
   position: absolute;
