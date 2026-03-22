@@ -1,10 +1,27 @@
 import './HomePage.css'
 
+const AVATAR_SRC = `${import.meta.env.BASE_URL}my_image.jpg`
+
 export default function AboutPage() {
   return (
     <div className="home">
       <section className="home__section">
         <h1 className="home__section-title">關於</h1>
+        <div className="home__about-portrait">
+          <div className="home__about-portrait-screen">
+            <div className="home__about-portrait-ring">
+              <img
+                className="home__about-portrait-img"
+                src={AVATAR_SRC}
+                alt="曹同和"
+                width={200}
+                height={200}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
         <p className="home__section-desc" style={{ marginBottom: '1rem' }}>
           曹同和，Python 後端與 IoT Edge 應用開發，熟悉異質協定整合與現場建置。
         </p>

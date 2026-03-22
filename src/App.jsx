@@ -265,8 +265,8 @@ function App() {
           aria-label="拖曳調整右側欄寬度"
         />
         <div className="blog-layout__right-content">
-          <RecentPosts />
           <AboutCard />
+          <RecentPosts />
         </div>
         <button
           type="button"

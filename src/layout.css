@@ -127,6 +127,10 @@
   min-width: 0;
 }
 
+.blog-layout__right-content .about-card + .recent-posts {
+  margin-top: 1rem;
+}
+
 .blog-layout__left-content {
   display: flex;
   flex-direction: column;

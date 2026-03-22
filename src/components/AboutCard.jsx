@@ -1,5 +1,7 @@
 import './AboutCard.css'
 
+const AVATAR_SRC = `${import.meta.env.BASE_URL}my_image.jpg`
+
 const SKILLS = [
   { name: 'Python', level: 92 },
   { name: 'Flask / 後端', level: 85 },
@@ -12,6 +14,19 @@ export default function AboutCard() {
   return (
     <div className="about-card">
       <h2 className="about-card__title">關於我</h2>
+      <div className="about-card__avatar-screen">
+        <div className="about-card__avatar-ring">
+          <img
+            className="about-card__avatar-img"
+            src={AVATAR_SRC}
+            alt="曹同和 頭像"
+            width={80}
+            height={80}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
       <p className="about-card__name">曹同和</p>
       <p className="about-card__bio">
         具備兩年以上 Python 後端與 IoT Edge 應用開發經驗，參與智慧交通專案，熟悉異質通訊協定整合（UDP、HTTP、MQTT、Socket IO、TCP、RS485）、資料流處理與 PostgreSQL，以及現場建置與維運。
