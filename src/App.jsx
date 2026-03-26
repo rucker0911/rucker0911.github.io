@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useRef } from 'react'
 import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import './App.css'
 import './reference-style.css'
@@ -11,105 +11,26 @@ import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import RecentPosts from './components/RecentPosts'
 import AboutCard from './components/AboutCard'
+import { useSidebarState } from './hooks/useSidebarState'
 
-const STORAGE_KEY = 'blog-sidebar-prefs'
-const MIN_SIDEBAR = 160
-const MAX_SIDEBAR = 420
-const COLLAPSED_WIDTH = 48
-const DEFAULT_LEFT = 220
-const DEFAULT_RIGHT = 260
-
-function loadSidebarPrefs() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    if (!raw) return null
-    const p = JSON.parse(raw)
-    return {
-      leftWidth: Math.min(MAX_SIDEBAR, Math.max(MIN_SIDEBAR, Number(p.leftWidth) || DEFAULT_LEFT)),
-      rightWidth: Math.min(MAX_SIDEBAR, Math.max(MIN_SIDEBAR, Number(p.rightWidth) || DEFAULT_RIGHT)),
-      leftCollapsed: Boolean(p.leftCollapsed),
-      rightCollapsed: Boolean(p.rightCollapsed)
-    }
-  } catch {
-    return null
-  }
-}
-
-function saveSidebarPrefs(prefs) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs))
-  } catch {}
-}
+const GRID_SPAN_COUNT = 400
 
 function App() {
-  const [leftOpen, setLeftOpen] = useState(false)
-  const [rightOpen, setRightOpen] = useState(false)
-  const [leftWidth, setLeftWidth] = useState(DEFAULT_LEFT)
-  const [rightWidth, setRightWidth] = useState(DEFAULT_RIGHT)
-  const [leftCollapsed, setLeftCollapsed] = useState(false)
-  const [rightCollapsed, setRightCollapsed] = useState(false)
+  const {
+    leftOpen, setLeftOpen,
+    rightOpen, setRightOpen,
+    leftCollapsed, setLeftCollapsed,
+    rightCollapsed, setRightCollapsed,
+    leftW, rightW,
+    closeOverlay,
+    startResizeLeft,
+    startResizeRight,
+  } = useSidebarState()
   const layoutRef = useRef(null)
   const location = useLocation()
 
-  useEffect(() => {
-    const p = loadSidebarPrefs()
-    if (p) {
-      setLeftWidth(p.leftWidth)
-      setRightWidth(p.rightWidth)
-      setLeftCollapsed(p.leftCollapsed)
-      setRightCollapsed(p.rightCollapsed)
-    }
-  }, [])
-
-  useEffect(() => {
-    saveSidebarPrefs({ leftWidth, rightWidth, leftCollapsed, rightCollapsed })
-  }, [leftWidth, rightWidth, leftCollapsed, rightCollapsed])
-
-  const closeOverlay = () => {
-    setLeftOpen(false)
-    setRightOpen(false)
-  }
-
-  const startResizeLeft = useCallback((e) => {
-    e.preventDefault()
-    const startX = e.clientX
-    const startW = leftWidth
-    const onMove = (e2) => {
-      const dx = e2.clientX - startX
-      const next = Math.min(MAX_SIDEBAR, Math.max(MIN_SIDEBAR, startW + dx))
-      setLeftWidth(next)
-    }
-    const onUp = () => {
-      window.removeEventListener('mousemove', onMove)
-      window.removeEventListener('mouseup', onUp)
-    }
-    window.addEventListener('mousemove', onMove)
-    window.addEventListener('mouseup', onUp)
-  }, [leftWidth])
-
-  const startResizeRight = useCallback((e) => {
-    e.preventDefault()
-    const startX = e.clientX
-    const startW = rightWidth
-    const onMove = (e2) => {
-      const dx = startX - e2.clientX
-      const next = Math.min(MAX_SIDEBAR, Math.max(MIN_SIDEBAR, startW + dx))
-      setRightWidth(next)
-    }
-    const onUp = () => {
-      window.removeEventListener('mousemove', onMove)
-      window.removeEventListener('mouseup', onUp)
-    }
-    window.addEventListener('mousemove', onMove)
-    window.addEventListener('mouseup', onUp)
-  }, [rightWidth])
-
   const pathname = location.pathname
   const activeSection = pathname === '/' ? 'home' : pathname.replace(/^\//, '') || 'home'
-
-  const GRID_SPAN_COUNT = 400
-  const leftW = leftCollapsed ? COLLAPSED_WIDTH : leftWidth
-  const rightW = rightCollapsed ? COLLAPSED_WIDTH : rightWidth
 
   return (
     <div className="ref-page">
