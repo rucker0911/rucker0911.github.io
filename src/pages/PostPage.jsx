@@ -1,11 +1,17 @@
 import { useParams, Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import { getPostBySlug } from '../lib/posts'
+import { usePageMeta } from '../hooks/usePageMeta'
 import './PostPage.css'
 
 export default function PostPage() {
   const { slug } = useParams()
   const post = slug ? getPostBySlug(slug) : null
+
+  usePageMeta({
+    title: post?.title,
+    description: post?.excerpt || undefined,
+  })
 
   if (!post) {
     return (

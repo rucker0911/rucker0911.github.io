@@ -1,9 +1,11 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import PostListSection from '../components/PostListSection'
+import { usePageMeta } from '../hooks/usePageMeta'
 import './HomePage.css'
 
 export default function HomePage() {
+  usePageMeta()
   const location = useLocation()
 
   useEffect(() => {

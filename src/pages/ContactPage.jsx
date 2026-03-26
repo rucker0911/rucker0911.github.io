@@ -1,6 +1,8 @@
+import { usePageMeta } from '../hooks/usePageMeta'
 import './HomePage.css'
 
 export default function ContactPage() {
+  usePageMeta({ title: '聯絡', description: '透過 Email、GitHub 或 LinkedIn 與曹同和聯繫。' })
   return (
     <div className="home">
       <section className="home__section">

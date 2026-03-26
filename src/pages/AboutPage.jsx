@@ -1,8 +1,10 @@
+import { usePageMeta } from '../hooks/usePageMeta'
 import './HomePage.css'
 
 const AVATAR_SRC = `${import.meta.env.BASE_URL}my_image.jpg`
 
 export default function AboutPage() {
+  usePageMeta({ title: '關於', description: '具備兩年以上 Python 後端與 IoT Edge 應用開發經驗，參與智慧交通專案，熟悉異質通訊協定整合與現場建置。' })
   return (
     <div className="home">
       <section className="home__section">
