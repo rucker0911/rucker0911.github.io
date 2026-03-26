@@ -85,16 +85,26 @@ function _extractTitleFromRaw(content) {
   return match ? match[1].trim() : ''
 }
 
-export function getAllPosts() {
+let _postsCache = null
+let _slugMap = null
+
+function _buildCache() {
+  if (_postsCache) return
   const posts = Object.entries(postModules)
     .map(([path, raw]) => _parsePost(path, raw))
     .filter(Boolean)
-  return posts.sort((a, b) => (b.date < a.date ? -1 : 1))
+  _postsCache = posts.sort((a, b) => (b.date < a.date ? -1 : 1))
+  _slugMap = new Map(_postsCache.map((p) => [p.slug, p]))
+}
+
+export function getAllPosts() {
+  _buildCache()
+  return _postsCache
 }
 
 export function getPostBySlug(slug) {
-  const all = getAllPosts()
-  return all.find((p) => p.slug === slug) ?? null
+  _buildCache()
+  return _slugMap.get(slug) ?? null
 }
 
 export function getCategories(posts) {
