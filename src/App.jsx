@@ -11,6 +11,7 @@ import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import RecentPosts from './components/RecentPosts'
 import AboutCard from './components/AboutCard'
+import NotFoundPage from './pages/NotFoundPage'
 import { useSidebarState } from './hooks/useSidebarState'
 
 const GRID_SPAN_COUNT = 400
@@ -174,6 +175,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/post/:slug" element={<PostPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
       </main>

@@ -411,3 +411,21 @@
   object-position: center 20%;
   display: block;
 }
+
+.home__404-back {
+  display: inline-block;
+  margin-top: 1.25rem;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--hud-cyan, #00e0ff);
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: opacity 0.2s, text-shadow 0.2s;
+}
+
+.home__404-back:hover {
+  opacity: 0.9;
+  text-shadow: 0 0 12px rgba(0, 224, 255, 0.4);
+}
