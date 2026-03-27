@@ -14,8 +14,6 @@ import AboutCard from './components/AboutCard'
 import NotFoundPage from './pages/NotFoundPage'
 import { useSidebarState } from './hooks/useSidebarState'
 
-const GRID_SPAN_COUNT = 400
-
 function App() {
   const {
     leftOpen, setLeftOpen,
@@ -35,11 +33,7 @@ function App() {
 
   return (
     <div className="ref-page">
-      <section className="ref-section ref-section--bg" aria-hidden="true">
-        {Array.from({ length: GRID_SPAN_COUNT }, (_, i) => (
-          <span key={i} className="ref-grid-span" />
-        ))}
-      </section>
+      <section className="ref-section ref-section--bg" aria-hidden="true" />
       <div
         ref={layoutRef}
         className="blog-layout"
