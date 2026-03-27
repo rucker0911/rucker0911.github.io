@@ -93,7 +93,11 @@ function _buildCache() {
   const posts = Object.entries(postModules)
     .map(([path, raw]) => _parsePost(path, raw))
     .filter(Boolean)
-  _postsCache = posts.sort((a, b) => (b.date < a.date ? -1 : 1))
+  _postsCache = posts.sort((a, b) => {
+    if (b.date > a.date) return 1
+    if (b.date < a.date) return -1
+    return a.slug.localeCompare(b.slug)
+  })
   _slugMap = new Map(_postsCache.map((p) => [p.slug, p]))
 }
 
