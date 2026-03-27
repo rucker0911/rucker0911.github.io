@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 
 const STORAGE_KEY = 'blog-sidebar-prefs'
 const MIN_SIDEBAR = 160
@@ -55,6 +55,11 @@ export function useSidebarState() {
   const [leftCollapsed, setLeftCollapsed] = useState(false)
   const [rightCollapsed, setRightCollapsed] = useState(false)
 
+  const leftWidthRef = useRef(leftWidth)
+  const rightWidthRef = useRef(rightWidth)
+  useEffect(() => { leftWidthRef.current = leftWidth }, [leftWidth])
+  useEffect(() => { rightWidthRef.current = rightWidth }, [rightWidth])
+
   useEffect(() => {
     const p = _loadPrefs()
     if (p) {
@@ -65,8 +70,12 @@ export function useSidebarState() {
     }
   }, [])
 
+  // Debounce 300ms：拖曳過程中不會每毫秒都寫 localStorage
   useEffect(() => {
-    _savePrefs({ leftWidth, rightWidth, leftCollapsed, rightCollapsed })
+    const timer = setTimeout(() => {
+      _savePrefs({ leftWidth, rightWidth, leftCollapsed, rightCollapsed })
+    }, 300)
+    return () => clearTimeout(timer)
   }, [leftWidth, rightWidth, leftCollapsed, rightCollapsed])
 
   const closeOverlay = useCallback(() => {
@@ -75,13 +84,13 @@ export function useSidebarState() {
   }, [])
 
   const startResizeLeft = useCallback(
-    _createResizeHandler(() => leftWidth, setLeftWidth, 'left'),
-    [leftWidth]
+    _createResizeHandler(() => leftWidthRef.current, setLeftWidth, 'left'),
+    []
   )
 
   const startResizeRight = useCallback(
-    _createResizeHandler(() => rightWidth, setRightWidth, 'right'),
-    [rightWidth]
+    _createResizeHandler(() => rightWidthRef.current, setRightWidth, 'right'),
+    []
   )
 
   const leftW = leftCollapsed ? COLLAPSED_WIDTH : leftWidth
