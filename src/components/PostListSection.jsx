@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { getAllPosts, getCategories, getTags } from '../lib/posts'
-import '../pages/HomePage.css'
+import './PostListSection.css'
 
 const TAB_ALL = '全部'
 const TAB_CATEGORY = '分類'
