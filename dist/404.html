@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <title>曹同和</title>
+    <script>
+      // GitHub Pages SPA fallback
+      // 將路徑、query string、hash 編碼進 URL 的 search 參數後導回根路徑
+      var l = window.location
+      l.replace(
+        l.protocol +
+          '//' +
+          l.host +
+          l.pathname.split('/').slice(0, 1).join('/') +
+          '/?p=' +
+          encodeURIComponent(l.pathname + l.search + l.hash)
+      )
+    </script>
+  </head>
+  <body></body>
+</html>
