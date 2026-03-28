@@ -19,14 +19,7 @@ function _slugToTitle(slug) {
 }
 
 function _getRawContent(raw) {
-  if (typeof raw === 'string') return raw
-  let r = raw
-  while (r != null && typeof r === 'object') {
-    if (typeof r.default === 'string') return r.default
-    if (typeof r.default === 'object' && r.default !== null) r = r.default
-    else break
-  }
-  return ''
+  return typeof raw === 'string' ? raw : ''
 }
 
 function _parsePost(path, raw) {
@@ -41,7 +34,6 @@ function _parsePost(path, raw) {
   } catch {
     body = content
   }
-  body = _stripFrontmatterFromBody(body)
   const slug = _slugFromPath(path)
   const parsedTags = Array.isArray(data.tags) && data.tags.length > 0
     ? data.tags
@@ -57,16 +49,6 @@ function _parsePost(path, raw) {
     excerpt: data.excerpt ?? '',
     body
   }
-}
-
-function _stripFrontmatterFromBody(body) {
-  if (!body || typeof body !== 'string') return body
-  const trimmed = body.replace(/^\uFEFF/, '').trim()
-  if (trimmed.startsWith('---')) {
-    const secondDash = trimmed.indexOf('\n---', 3)
-    if (secondDash !== -1) return trimmed.slice(secondDash + 4).trim()
-  }
-  return body
 }
 
 function _extractTagsFromRaw(content) {
