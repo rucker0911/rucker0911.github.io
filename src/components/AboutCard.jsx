@@ -1,14 +1,5 @@
+import { PROFILE_NAME, PROFILE_AVATAR, PROFILE_BIO, PROFILE_TECH_STACK, PROFILE_SKILLS } from '../lib/profile'
 import './AboutCard.css'
-
-const AVATAR_SRC = `${import.meta.env.BASE_URL}my_image.jpg`
-
-const SKILLS = [
-  { name: 'Python', level: 92 },
-  { name: 'Flask / 後端', level: 85 },
-  { name: 'PostgreSQL', level: 80 },
-  { name: 'IoT / 協定整合', level: 88 },
-  { name: 'Git / 維運', level: 82 }
-]
 
 export default function AboutCard() {
   return (
@@ -18,8 +9,8 @@ export default function AboutCard() {
         <div className="about-card__avatar-ring">
           <img
             className="about-card__avatar-img"
-            src={AVATAR_SRC}
-            alt="曹同和 頭像"
+            src={PROFILE_AVATAR}
+            alt={`${PROFILE_NAME} 頭像`}
             width={80}
             height={80}
             loading="lazy"
@@ -27,12 +18,10 @@ export default function AboutCard() {
           />
         </div>
       </div>
-      <p className="about-card__name">曹同和</p>
-      <p className="about-card__bio">
-        具備兩年以上 Python 後端與 IoT Edge 應用開發經驗，參與智慧交通專案，熟悉異質通訊協定整合（UDP、HTTP、MQTT、Socket IO、TCP、RS485）、資料流處理與 PostgreSQL，以及現場建置與維運。
-      </p>
+      <p className="about-card__name">{PROFILE_NAME}</p>
+      <p className="about-card__bio">{PROFILE_BIO}</p>
       <div className="about-card__skill-bars">
-        {SKILLS.map(({ name, level }) => (
+        {PROFILE_SKILLS.map(({ name, level }) => (
           <div key={name} className="about-card__skill">
             <span className="about-card__skill-label">{name}</span>
             <div className="about-card__skill-track">
@@ -41,9 +30,7 @@ export default function AboutCard() {
           </div>
         ))}
       </div>
-      <p className="about-card__techs">
-        Python · Flask · ZMQ · Asyncio · PostgreSQL · Git
-      </p>
+      <p className="about-card__techs">{PROFILE_TECH_STACK}</p>
     </div>
   )
 }
