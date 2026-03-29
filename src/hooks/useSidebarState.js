@@ -29,24 +29,6 @@ function _savePrefs(prefs) {
   } catch {}
 }
 
-function _createResizeHandler(getWidth, setWidth, direction) {
-  return (e) => {
-    e.preventDefault()
-    const startX = e.clientX
-    const startW = getWidth()
-    const onMove = (e2) => {
-      const dx = direction === 'left' ? e2.clientX - startX : startX - e2.clientX
-      setWidth(Math.min(MAX_SIDEBAR, Math.max(MIN_SIDEBAR, startW + dx)))
-    }
-    const onUp = () => {
-      window.removeEventListener('mousemove', onMove)
-      window.removeEventListener('mouseup', onUp)
-    }
-    window.addEventListener('mousemove', onMove)
-    window.addEventListener('mouseup', onUp)
-  }
-}
-
 export function useSidebarState() {
   const [leftOpen, setLeftOpen] = useState(false)
   const [rightOpen, setRightOpen] = useState(false)
@@ -83,15 +65,35 @@ export function useSidebarState() {
     setRightOpen(false)
   }, [])
 
-  const startResizeLeft = useCallback(
-    _createResizeHandler(() => leftWidthRef.current, setLeftWidth, 'left'),
-    []
-  )
+  const startResizeLeft = useCallback((e) => {
+    e.preventDefault()
+    const startX = e.clientX
+    const startW = leftWidthRef.current
+    const onMove = (e2) => {
+      setLeftWidth(Math.min(MAX_SIDEBAR, Math.max(MIN_SIDEBAR, startW + (e2.clientX - startX))))
+    }
+    const onUp = () => {
+      window.removeEventListener('mousemove', onMove)
+      window.removeEventListener('mouseup', onUp)
+    }
+    window.addEventListener('mousemove', onMove)
+    window.addEventListener('mouseup', onUp)
+  }, [])
 
-  const startResizeRight = useCallback(
-    _createResizeHandler(() => rightWidthRef.current, setRightWidth, 'right'),
-    []
-  )
+  const startResizeRight = useCallback((e) => {
+    e.preventDefault()
+    const startX = e.clientX
+    const startW = rightWidthRef.current
+    const onMove = (e2) => {
+      setRightWidth(Math.min(MAX_SIDEBAR, Math.max(MIN_SIDEBAR, startW + (startX - e2.clientX))))
+    }
+    const onUp = () => {
+      window.removeEventListener('mousemove', onMove)
+      window.removeEventListener('mouseup', onUp)
+    }
+    window.addEventListener('mousemove', onMove)
+    window.addEventListener('mouseup', onUp)
+  }, [])
 
   const leftW = leftCollapsed ? COLLAPSED_WIDTH : leftWidth
   const rightW = rightCollapsed ? COLLAPSED_WIDTH : rightWidth

@@ -30,6 +30,7 @@ export default [
         { allowConstantExport: true },
       ],
       ...react.configs.recommended.rules,
+      'react/react-in-jsx-scope': 'off',
     },
     settings: { react: { version: '18.3' } },
   },
