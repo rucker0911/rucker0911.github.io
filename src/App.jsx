@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import './App.css'
 import './reference-style.css'
@@ -25,7 +24,6 @@ function App() {
     startResizeLeft,
     startResizeRight,
   } = useSidebarState()
-  const layoutRef = useRef(null)
   const location = useLocation()
 
   const pathname = location.pathname
@@ -35,7 +33,6 @@ function App() {
     <div className="ref-page">
       <section className="ref-section ref-section--bg" aria-hidden="true" />
       <div
-        ref={layoutRef}
         className="blog-layout"
         style={{
           '--layout-left-width': `${leftW}px`,
