@@ -12,6 +12,7 @@ import RecentPosts from './components/RecentPosts'
 import AboutCard from './components/AboutCard'
 import NotFoundPage from './pages/NotFoundPage'
 import { useSidebarState } from './hooks/useSidebarState'
+import { PROFILE_NAME } from './lib/profile'
 
 function App() {
   const {
@@ -43,7 +44,7 @@ function App() {
         }}
       >
       <header className="blog-layout__mobile-bar">
-        <span className="blog-layout__mobile-bar-brand">曹同和</span>
+        <span className="blog-layout__mobile-bar-brand">{PROFILE_NAME}</span>
         <div className="blog-layout__mobile-bar-actions">
           <button
             type="button"
@@ -75,7 +76,7 @@ function App() {
 
       <aside className={`blog-layout__left ${leftOpen ? 'is-open' : ''} ${leftCollapsed ? 'blog-layout__left--collapsed' : ''}`}>
         <div className="blog-layout__left-content">
-          <div className="blog-layout__brand">曹同和</div>
+          <div className="blog-layout__brand">{PROFILE_NAME}</div>
           <nav>
           <ul className="blog-layout__nav">
             <li className="blog-layout__nav-item">
