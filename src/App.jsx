@@ -1,4 +1,4 @@
-import { Routes, Route, Link, useLocation } from 'react-router-dom'
+import { Routes, Route, NavLink, useLocation } from 'react-router-dom'
 import './App.css'
 import './reference-style.css'
 import './layout.css'
@@ -24,10 +24,13 @@ function App() {
     startResizeLeft,
     startResizeRight,
   } = useSidebarState()
-  const location = useLocation()
+  const { pathname } = useLocation()
 
-  const pathname = location.pathname
-  const activeSection = pathname === '/' ? 'home' : pathname.replace(/^\//, '') || 'home'
+  const _navClass = ({ isActive }) =>
+    `blog-layout__nav-link${isActive ? ' blog-layout__nav-link--active' : ''}`
+
+  const _postsNavClass = ({ isActive }) =>
+    `blog-layout__nav-link${isActive || pathname.startsWith('/post/') ? ' blog-layout__nav-link--active' : ''}`
 
   return (
     <div className="ref-page">
@@ -76,64 +79,44 @@ function App() {
           <nav>
           <ul className="blog-layout__nav">
             <li className="blog-layout__nav-item">
-              <Link
-                to="/"
-                className={`blog-layout__nav-link ${activeSection === 'home' ? 'blog-layout__nav-link--active' : ''}`}
-                onClick={closeOverlay}
-              >
+              <NavLink to="/" end className={_navClass} onClick={closeOverlay}>
                 <span className="blog-layout__nav-icon" aria-hidden="true">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
                 </span>
                 首頁
-              </Link>
+              </NavLink>
             </li>
             <li className="blog-layout__nav-item">
-              <Link
-                to="/posts"
-                className={`blog-layout__nav-link ${activeSection === 'posts' ? 'blog-layout__nav-link--active' : ''}`}
-                onClick={closeOverlay}
-              >
+              <NavLink to="/posts" className={_postsNavClass} onClick={closeOverlay}>
                 <span className="blog-layout__nav-icon" aria-hidden="true">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" /><line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" /></svg>
                 </span>
                 文章
-              </Link>
+              </NavLink>
             </li>
             <li className="blog-layout__nav-item">
-              <Link
-                to="/projects"
-                className={`blog-layout__nav-link ${activeSection === 'projects' ? 'blog-layout__nav-link--active' : ''}`}
-                onClick={closeOverlay}
-              >
+              <NavLink to="/projects" className={_navClass} onClick={closeOverlay}>
                 <span className="blog-layout__nav-icon" aria-hidden="true">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" /></svg>
                 </span>
                 專案
-              </Link>
+              </NavLink>
             </li>
             <li className="blog-layout__nav-item">
-              <Link
-                to="/about"
-                className={`blog-layout__nav-link ${activeSection === 'about' ? 'blog-layout__nav-link--active' : ''}`}
-                onClick={closeOverlay}
-              >
+              <NavLink to="/about" className={_navClass} onClick={closeOverlay}>
                 <span className="blog-layout__nav-icon" aria-hidden="true">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
                 </span>
                 關於
-              </Link>
+              </NavLink>
             </li>
             <li className="blog-layout__nav-item">
-              <Link
-                to="/contact"
-                className={`blog-layout__nav-link ${activeSection === 'contact' ? 'blog-layout__nav-link--active' : ''}`}
-                onClick={closeOverlay}
-              >
+              <NavLink to="/contact" className={_navClass} onClick={closeOverlay}>
                 <span className="blog-layout__nav-icon" aria-hidden="true">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
                 </span>
                 聯絡
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>
