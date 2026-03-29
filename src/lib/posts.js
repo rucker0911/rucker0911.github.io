@@ -19,7 +19,16 @@ function _slugToTitle(slug) {
 }
 
 function _getRawContent(raw) {
-  return typeof raw === 'string' ? raw : ''
+  if (typeof raw !== 'string') return ''
+  return raw.replace(/^\uFEFF/, '')
+}
+
+function _stripFrontmatter(str) {
+  if (!str || typeof str !== 'string') return str
+  const s = str.trimStart()
+  if (!s.startsWith('---')) return str
+  const end = s.indexOf('\n---', 3)
+  return end !== -1 ? s.slice(end + 4).trimStart() : str
 }
 
 function _parsePost(path, raw) {
@@ -34,6 +43,7 @@ function _parsePost(path, raw) {
   } catch {
     body = content
   }
+  body = _stripFrontmatter(body)
   const slug = _slugFromPath(path)
   const parsedTags = Array.isArray(data.tags) && data.tags.length > 0
     ? data.tags
