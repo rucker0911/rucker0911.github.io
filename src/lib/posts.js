@@ -99,6 +99,6 @@ export function getCategories(posts) {
 }
 
 export function getTags(posts) {
-  const set = new Set(posts.flatMap((p) => p.tags))
+  const set = new Set(posts.flatMap((p) => p.tags).filter(Boolean))
   return [...set].sort()
 }
