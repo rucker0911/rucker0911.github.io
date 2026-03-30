@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import { Routes, Route, NavLink, useLocation } from 'react-router-dom'
 import './reference-style.css'
 import './layout.css'
@@ -10,6 +11,7 @@ import ContactPage from './pages/ContactPage'
 import RecentPosts from './components/RecentPosts'
 import AboutCard from './components/AboutCard'
 import NotFoundPage from './pages/NotFoundPage'
+import ScrollToTopButton from './components/ScrollToTopButton'
 import { useSidebarState } from './hooks/useSidebarState'
 import { PROFILE_NAME } from './lib/profile'
 import {
@@ -34,6 +36,7 @@ function App() {
     startResizeRight,
   } = useSidebarState()
   const { pathname } = useLocation()
+  const mainScrollRef = useRef(null)
 
   const _navClass = ({ isActive }) =>
     `blog-layout__nav-link${isActive ? ' blog-layout__nav-link--active' : ''}`
@@ -147,7 +150,8 @@ function App() {
         />
       </aside>
 
-      <main className="blog-layout__main">
+      <main ref={mainScrollRef} className="blog-layout__main">
+        <ScrollToTopButton scrollRef={mainScrollRef} />
         <div className="blog-layout__main-inner">
           <Routes>
             <Route path="/" element={<HomePage />} />

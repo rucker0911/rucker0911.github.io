@@ -12,6 +12,9 @@
   --hud-glow-strong: 0 0 16px rgba(0, 224, 255, 0.35), 0 0 32px rgba(0, 224, 255, 0.15);
   --hud-text: #c8e8f0;
   --hud-text-dim: #7a9ca8;
+  --hud-scrollbar-track: rgba(0, 0, 0, 0.4);
+  --hud-scrollbar-thumb: rgba(0, 224, 255, 0.32);
+  --hud-scrollbar-thumb-hover: rgba(0, 224, 255, 0.55);
   /* 像素風英數字體 */
   --hud-font-pixel: 'Press Start 2P', 'VT323', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }

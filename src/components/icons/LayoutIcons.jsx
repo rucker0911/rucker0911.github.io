@@ -79,3 +79,11 @@ export function IconChevronRight({ size = 14, ...rest }) {
     </svg>
   )
 }
+
+export function IconChevronUp({ size = 20, ...rest }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...TOGGLE_STROKE} {...rest}>
+      <path d="M18 15l-6-6-6 6" />
+    </svg>
+  )
+}
