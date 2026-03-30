@@ -1,5 +1,4 @@
 import { Routes, Route, NavLink, useLocation } from 'react-router-dom'
-import './App.css'
 import './reference-style.css'
 import './layout.css'
 import HomePage from './pages/HomePage'
