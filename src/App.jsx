@@ -12,6 +12,15 @@ import AboutCard from './components/AboutCard'
 import NotFoundPage from './pages/NotFoundPage'
 import { useSidebarState } from './hooks/useSidebarState'
 import { PROFILE_NAME } from './lib/profile'
+import {
+  IconNavHome,
+  IconNavPosts,
+  IconNavProjects,
+  IconNavAbout,
+  IconNavContact,
+  IconChevronLeft,
+  IconChevronRight,
+} from './components/icons/LayoutIcons'
 
 function App() {
   const {
@@ -81,7 +90,7 @@ function App() {
             <li className="blog-layout__nav-item">
               <NavLink to="/" end className={_navClass} onClick={closeOverlay}>
                 <span className="blog-layout__nav-icon" aria-hidden="true">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
+                  <IconNavHome />
                 </span>
                 首頁
               </NavLink>
@@ -89,7 +98,7 @@ function App() {
             <li className="blog-layout__nav-item">
               <NavLink to="/posts" className={_postsNavClass} onClick={closeOverlay}>
                 <span className="blog-layout__nav-icon" aria-hidden="true">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" /><line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" /></svg>
+                  <IconNavPosts />
                 </span>
                 文章
               </NavLink>
@@ -97,7 +106,7 @@ function App() {
             <li className="blog-layout__nav-item">
               <NavLink to="/projects" className={_navClass} onClick={closeOverlay}>
                 <span className="blog-layout__nav-icon" aria-hidden="true">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" /></svg>
+                  <IconNavProjects />
                 </span>
                 專案
               </NavLink>
@@ -105,7 +114,7 @@ function App() {
             <li className="blog-layout__nav-item">
               <NavLink to="/about" className={_navClass} onClick={closeOverlay}>
                 <span className="blog-layout__nav-icon" aria-hidden="true">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+                  <IconNavAbout />
                 </span>
                 關於
               </NavLink>
@@ -113,7 +122,7 @@ function App() {
             <li className="blog-layout__nav-item">
               <NavLink to="/contact" className={_navClass} onClick={closeOverlay}>
                 <span className="blog-layout__nav-icon" aria-hidden="true">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
+                  <IconNavContact />
                 </span>
                 聯絡
               </NavLink>
@@ -128,9 +137,7 @@ function App() {
           aria-label={leftCollapsed ? '展開左側欄' : '收合左側欄'}
           title={leftCollapsed ? '展開左側欄' : '收合左側欄'}
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            {leftCollapsed ? <path d="M9 18l6-6-6-6" /> : <path d="M15 18l-6-6 6-6" />}
-          </svg>
+          {leftCollapsed ? <IconChevronRight /> : <IconChevronLeft />}
         </button>
         <div
           className="blog-layout__resize-handle blog-layout__resize-handle--left"
@@ -172,9 +179,7 @@ function App() {
           aria-label={rightCollapsed ? '展開右側欄' : '收合右側欄'}
           title={rightCollapsed ? '展開右側欄' : '收合右側欄'}
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            {rightCollapsed ? <path d="M15 18l-6-6 6-6" /> : <path d="M9 18l6-6-6-6" />}
-          </svg>
+          {rightCollapsed ? <IconChevronLeft /> : <IconChevronRight />}
         </button>
       </aside>
       </div>
