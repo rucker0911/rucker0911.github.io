@@ -28,6 +28,23 @@
   margin-bottom: 1rem;
 }
 
+.post-page__cover {
+  margin: 0 0 1.25rem;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--hud-cyan-dim, rgba(0, 224, 255, 0.35));
+  box-shadow: 0 0 20px rgba(0, 224, 255, 0.1);
+}
+
+.post-page__cover-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(40vh, 280px);
+  object-fit: cover;
+  object-position: center;
+}
+
 .post-page__header {
   margin-bottom: 2rem;
   padding-bottom: 1.25rem;

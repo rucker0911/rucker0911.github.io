@@ -13,6 +13,7 @@ export default function PostPage() {
   usePageMeta({
     title: post?.title,
     description: post?.excerpt || undefined,
+    image: post?.image || undefined,
   })
 
   const handleBack = useCallback(() => {
@@ -35,6 +36,11 @@ export default function PostPage() {
   return (
     <article className="post-page">
       <button type="button" className="post-page__back" onClick={handleBack}>← 返回</button>
+      {post.image && (
+        <div className="post-page__cover">
+          <img src={post.image} alt="" className="post-page__cover-img" decoding="async" loading="eager" />
+        </div>
+      )}
       <header className="post-page__header">
         <h1 className="post-page__title">{post.title}</h1>
         <div className="post-page__meta">

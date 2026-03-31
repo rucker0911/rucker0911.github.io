@@ -18,6 +18,16 @@ function _slugToTitle(slug) {
     .join(' ')
 }
 
+function _normalizePostImage(raw) {
+  if (raw == null) return ''
+  const s = String(raw).trim()
+  if (!s) return ''
+  if (/^https?:\/\//i.test(s)) return s
+  const base = import.meta.env.BASE_URL || '/'
+  const path = s.replace(/^\/+/, '')
+  return base.endsWith('/') ? `${base}${path}` : `${base}/${path}`
+}
+
 function _getRawContent(raw) {
   if (typeof raw !== 'string') return ''
   return raw.replace(/^\uFEFF/, '')
@@ -50,6 +60,7 @@ function _parsePost(path, raw) {
     : _extractTagsFromRaw(content)
   const title = data.title ? data.title : _extractTitleFromRaw(content) || _slugToTitle(slug)
   const date = data.date != null ? String(data.date) : ''
+  const image = _normalizePostImage(data.image)
   return {
     slug,
     title: title && String(title).trim() ? title : _slugToTitle(slug),
@@ -57,6 +68,7 @@ function _parsePost(path, raw) {
     category: data.category ?? '',
     tags: parsedTags,
     excerpt: data.excerpt ?? '',
+    image,
     body
   }
 }
