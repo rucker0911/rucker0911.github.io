@@ -9,6 +9,15 @@ const TAB_TAG = '標籤'
 const VIEW_LIST = 'list'
 const VIEW_GRID = 'grid'
 
+function _categoryAccent(category) {
+  const c = String(category || '').trim()
+  if (!c) return 'rgba(0, 224, 255, 0.55)'
+  if (c === '專案') return 'rgba(0, 255, 255, 0.85)'
+  if (c === '技術') return 'rgba(172, 214, 255, 0.85)'
+  if (c === '筆記') return 'rgba(120, 255, 214, 0.75)'
+  return 'rgba(0, 224, 255, 0.55)'
+}
+
 export default function PostListSection() {
   const allPosts = useMemo(() => getAllPosts(), [])
   const categories = useMemo(() => getCategories(allPosts), [allPosts])
@@ -103,6 +112,7 @@ export default function PostListSection() {
             <Link
               to={`/post/${post.slug}`}
               className={`home__list-link${post.image ? ' home__list-link--thumb' : ''}`}
+              style={{ '--card-accent': _categoryAccent(post.category) }}
             >
               {post.image && (
                 <span className="home__list-thumb-wrap" aria-hidden="true">
