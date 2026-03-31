@@ -13,13 +13,14 @@ export default function RecentPosts() {
       {posts.length === 0 ? (
         <p className="recent-posts__empty">尚未有貼文</p>
       ) : (
-        <ul className="recent-posts__list">
+        <ul className="recent-posts__list" aria-label="最近文章時間軸">
           {posts.map((p) => (
             <li key={p.slug} className="recent-posts__item">
+              <span className="recent-posts__dot" aria-hidden="true" />
               <Link to={`/post/${p.slug}`} className="recent-posts__link">
                 {p.title}
               </Link>
-              <span className="recent-posts__date">{p.date}</span>
+              <span className="recent-posts__date" aria-label={`日期 ${p.date || ''}`}>{p.date}</span>
             </li>
           ))}
         </ul>
