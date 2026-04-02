@@ -67,6 +67,7 @@ function _parseMatterBody(content) {
     data = parsed.data || {}
     body = parsed.content ?? ''
   } catch {
+    // gray-matter 解析失敗時降級保留全文，由 _stripFrontmatter 再次清除殘留 YAML
     body = content
   }
   return { data, body: _stripFrontmatter(body) }
