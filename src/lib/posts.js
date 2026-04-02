@@ -49,8 +49,9 @@ function _stripFrontmatter(str) {
   if (!str || typeof str !== 'string') return str
   const s = str.trimStart()
   if (!s.startsWith('---')) return str
-  const end = s.indexOf('\n---', 3)
-  return end !== -1 ? s.slice(end + 4).trimStart() : str
+  const CLOSING_DELIMITER = '\n---'
+  const end = s.indexOf(CLOSING_DELIMITER, 3)
+  return end !== -1 ? s.slice(end + CLOSING_DELIMITER.length).trimStart() : str
 }
 
 /**
@@ -83,8 +84,9 @@ function _buildBlogPost(slug, data, body, fullContent) {
   const parsedTags = Array.isArray(data.tags) && data.tags.length > 0
     ? data.tags
     : _extractTagsFromRaw(fullContent)
-  const titleRaw = data.title ? data.title : _extractTitleFromRaw(fullContent) || _slugToTitle(slug)
-  const title = titleRaw && String(titleRaw).trim() ? titleRaw : _slugToTitle(slug)
+  const title =
+    String(data.title || _extractTitleFromRaw(fullContent) || _slugToTitle(slug)).trim()
+    || _slugToTitle(slug)
   const date = data.date != null ? String(data.date) : ''
   const image = _normalizePostImage(data.image)
   return {
