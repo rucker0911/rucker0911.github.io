@@ -32,12 +32,12 @@ function _slugToTitle(slug) {
 
 function _normalizePostImage(raw) {
   if (raw == null) return ''
-  const s = String(raw).trim()
-  if (!s) return ''
-  if (/^https?:\/\//i.test(s)) return s
+  const src = String(raw).trim()
+  if (!src) return ''
+  if (/^https?:\/\//i.test(src)) return src
   const base = import.meta.env.BASE_URL || '/'
-  const path = s.replace(/^\/+/, '')
-  return base.endsWith('/') ? `${base}${path}` : `${base}/${path}`
+  const relativePath = src.replace(/^\/+/, '')
+  return base.endsWith('/') ? `${base}${relativePath}` : `${base}/${relativePath}`
 }
 
 function _getRawContent(raw) {
