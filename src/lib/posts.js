@@ -49,9 +49,9 @@ function _stripFrontmatter(str) {
   if (!str || typeof str !== 'string') return str
   const s = str.trimStart()
   if (!s.startsWith('---')) return str
-  const CLOSING_DELIMITER = '\n---'
-  const end = s.indexOf(CLOSING_DELIMITER, 3)
-  return end !== -1 ? s.slice(end + CLOSING_DELIMITER.length).trimStart() : str
+  const DELIMITER = '\n---'
+  const end = s.indexOf(DELIMITER, 3)
+  return end !== -1 ? s.slice(end + DELIMITER.length).trimStart() : str
 }
 
 /**
