@@ -139,6 +139,7 @@ function _buildCache() {
   const posts = Object.entries(postModules)
     .map(([path, raw]) => _parsePost(path, raw))
     .filter(Boolean)
+  // 日期降冪（最新在前），同日期時以 slug 升冪穩定排序
   _postsCache = posts.sort((a, b) => {
     if (b.date > a.date) return 1
     if (b.date < a.date) return -1

@@ -33,6 +33,8 @@ rucker.github.io/
     │   ├── postListCategoryAccent.js   # 分類名稱 → 卡片強調色對應
     │   └── profile.js                  # 個人資料常數（名稱、Bio、技能）
     ├── components/
+    │   ├── icons/
+    │   │   └── LayoutIcons.jsx  # 版面切換用 SVG 圖示
     │   ├── AboutCard.jsx        # 右側欄個人簡介卡片
     │   ├── PostListSection.jsx  # 文章列表（搜尋 / 分類 / 標籤篩選）
     │   ├── PostListToolbar.jsx  # 文章列表工具列（tab 切換、view 切換）
