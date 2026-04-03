@@ -28,11 +28,17 @@ rucker.github.io/
     │   ├── useSidebarState.js  # Sidebar 寬度、收合、localStorage 狀態
     │   └── usePageMeta.js      # 動態更新 document.title 與 OG meta
     ├── lib/
-    │   └── posts.js            # 讀取並快取所有 Markdown 文章
+    │   ├── posts.js                    # 讀取並快取所有 Markdown 文章
+    │   ├── postListConstants.js        # 文章列表 tab / view / 篩選相關常數
+    │   ├── postListCategoryAccent.js   # 分類名稱 → 卡片強調色對應
+    │   └── profile.js                  # 個人資料常數（名稱、Bio、技能）
     ├── components/
-    │   ├── AboutCard.jsx       # 右側欄個人簡介卡片
-    │   ├── PostListSection.jsx # 文章列表（搜尋 / 分類 / 標籤篩選）
-    │   └── RecentPosts.jsx     # 右側欄最近文章
+    │   ├── AboutCard.jsx        # 右側欄個人簡介卡片
+    │   ├── PostListSection.jsx  # 文章列表（搜尋 / 分類 / 標籤篩選）
+    │   ├── PostListToolbar.jsx  # 文章列表工具列（tab 切換、view 切換）
+    │   ├── PostListCard.jsx     # 單篇文章卡片元件
+    │   ├── RecentPosts.jsx      # 右側欄最近文章
+    │   └── ScrollToTopButton.jsx # 回頂部按鈕
     ├── pages/
     │   ├── HomePage.jsx
     │   ├── PostsPage.jsx
@@ -56,6 +62,7 @@ date: '2026-01-01'
 category: '分類名稱'
 tags: ['標籤A', '標籤B']
 excerpt: '文章摘要，會顯示在列表與 SEO description。'
+image: '/images/cover.jpg'   # 選填，封面圖（相對於 public/ 或完整 URL）
 ---
 
 文章內容（支援 Markdown 語法）...
