@@ -1,20 +1,15 @@
 /* eslint-disable react/prop-types */
 
-const NAV_STROKE = {
+const makeStroke = (strokeWidth) => ({
   fill: 'none',
   stroke: 'currentColor',
-  strokeWidth: 1.5,
+  strokeWidth,
   strokeLinecap: 'round',
   strokeLinejoin: 'round',
-}
+})
 
-const TOGGLE_STROKE = {
-  fill: 'none',
-  stroke: 'currentColor',
-  strokeWidth: 2,
-  strokeLinecap: 'round',
-  strokeLinejoin: 'round',
-}
+const NAV_STROKE    = makeStroke(1.5)
+const TOGGLE_STROKE = makeStroke(2)
 
 export function IconNavHome({ size = 16, ...rest }) {
   return (
