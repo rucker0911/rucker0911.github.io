@@ -46,11 +46,9 @@ function App() {
   const { pathname } = useLocation()
   const mainScrollRef = useRef(null)
 
-  const _navClass = ({ isActive }) =>
-    `blog-layout__nav-link${isActive ? ' blog-layout__nav-link--active' : ''}`
-
-  const _postsNavClass = ({ isActive }) =>
-    `blog-layout__nav-link${isActive || pathname.startsWith('/post/') ? ' blog-layout__nav-link--active' : ''}`
+  const _navClass = (extraActive = false) =>
+    ({ isActive }) =>
+      `blog-layout__nav-link${isActive || extraActive ? ' blog-layout__nav-link--active' : ''}`
 
   return (
     <div className="ref-page">
@@ -103,7 +101,7 @@ function App() {
                 <NavLink
                   to={to}
                   end={end}
-                  className={activeOnPost ? _postsNavClass : _navClass}
+                  className={_navClass(activeOnPost && pathname.startsWith('/post/'))}
                   onClick={closeOverlay}
                 >
                   <span className="blog-layout__nav-icon" aria-hidden="true">
