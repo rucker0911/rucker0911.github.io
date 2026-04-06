@@ -24,6 +24,14 @@ import {
   IconChevronRight,
 } from './components/icons/LayoutIcons'
 
+const NAV_ITEMS = [
+  { to: '/',         label: '首頁', Icon: IconNavHome,     end: true           },
+  { to: '/posts',    label: '文章', Icon: IconNavPosts,    activeOnPost: true  },
+  { to: '/projects', label: '專案', Icon: IconNavProjects                      },
+  { to: '/about',    label: '關於', Icon: IconNavAbout                         },
+  { to: '/contact',  label: '聯絡', Icon: IconNavContact                       },
+]
+
 function App() {
   const {
     leftOpen, setLeftOpen,
@@ -90,46 +98,21 @@ function App() {
           <div className="blog-layout__brand">{PROFILE_NAME}</div>
           <nav>
           <ul className="blog-layout__nav">
-            <li className="blog-layout__nav-item">
-              <NavLink to="/" end className={_navClass} onClick={closeOverlay}>
-                <span className="blog-layout__nav-icon" aria-hidden="true">
-                  <IconNavHome />
-                </span>
-                首頁
-              </NavLink>
-            </li>
-            <li className="blog-layout__nav-item">
-              <NavLink to="/posts" className={_postsNavClass} onClick={closeOverlay}>
-                <span className="blog-layout__nav-icon" aria-hidden="true">
-                  <IconNavPosts />
-                </span>
-                文章
-              </NavLink>
-            </li>
-            <li className="blog-layout__nav-item">
-              <NavLink to="/projects" className={_navClass} onClick={closeOverlay}>
-                <span className="blog-layout__nav-icon" aria-hidden="true">
-                  <IconNavProjects />
-                </span>
-                專案
-              </NavLink>
-            </li>
-            <li className="blog-layout__nav-item">
-              <NavLink to="/about" className={_navClass} onClick={closeOverlay}>
-                <span className="blog-layout__nav-icon" aria-hidden="true">
-                  <IconNavAbout />
-                </span>
-                關於
-              </NavLink>
-            </li>
-            <li className="blog-layout__nav-item">
-              <NavLink to="/contact" className={_navClass} onClick={closeOverlay}>
-                <span className="blog-layout__nav-icon" aria-hidden="true">
-                  <IconNavContact />
-                </span>
-                聯絡
-              </NavLink>
-            </li>
+            {NAV_ITEMS.map(({ to, label, Icon, end, activeOnPost }) => (
+              <li key={to} className="blog-layout__nav-item">
+                <NavLink
+                  to={to}
+                  end={end}
+                  className={activeOnPost ? _postsNavClass : _navClass}
+                  onClick={closeOverlay}
+                >
+                  <span className="blog-layout__nav-icon" aria-hidden="true">
+                    <Icon />
+                  </span>
+                  {label}
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </nav>
         </div>
